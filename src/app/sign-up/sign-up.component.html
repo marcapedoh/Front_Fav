@@ -6,7 +6,7 @@
       </div>
       <div class="login-form-section">
         <h2>Connectez-vous</h2>
-        <form (ngSubmit)="onSubmit($event)" #signUpForm="ngForm">
+        <form (ngSubmit)="onSubmit()" #signUpForm="ngForm">
           <div class="input-group">
             <label for="username">Nom d'utilisateur</label>
             <input 
@@ -14,9 +14,9 @@
               id="username" 
               [(ngModel)]="username" 
               name="username" 
-              required 
               placeholder="Entrez votre nom d'utilisateur"
-              #usernameInput="ngModel">
+              #usernameInput="ngModel" 
+              required />
           </div>
   
           <div class="input-group">
@@ -26,9 +26,9 @@
               id="password" 
               [(ngModel)]="password" 
               name="password" 
-              required 
               placeholder="Entrez votre mot de passe"
-              #passwordInput="ngModel">
+              #passwordInput="ngModel"
+              required />
           </div>
           
           <div class="input-group">
@@ -38,10 +38,13 @@
               id="confirmPassword" 
               [(ngModel)]="confirmPassword" 
               name="confirmPassword" 
-              required 
               placeholder="Confirmez votre mot de passe"
-              #confirmPasswordInput="ngModel">
+              #confirmPasswordInput="ngModel"
+              required />
+               <!-- Message d'erreur pour les mots de passe non correspondants -->
+         <p *ngIf="passwordMismatch" style="color: red;">Les mots de passe ne correspondent pas.</p>
           </div>
+
   
           <button type="submit" class="login-btn" [disabled]="!signUpForm.valid">Inscrivez-vous</button>
           <p class="forgot-password" routerLink="/login">Se connecter</p>
