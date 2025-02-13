@@ -1,38 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
+<div class="login-wrapper">
   <div class="login-container">
     <div class="welcome-section">
-      <h1>Welcome Back!</h1>
-      <p>Login to access your account and continue your journey with us.</p>
+      <h1>Bienvenue!</h1>
+      <p>Connectez-vous pour accéder à votre compte et poursuivre votre voyage avec nous.</p>
     </div>
-    
     <div class="login-form-section">
-      <h2>Login</h2>
-      <form (ngSubmit)="onSubmit()">
+      <h2>Connectez-vous</h2>
+      <form form (ngSubmit)="onSubmit($event)" #loginForm="ngForm">
         <div class="input-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" [(ngModel)]="username" name="username" required placeholder="Enter your username">
+          <label for="username">Nom d'utilisateur</label>
+          <input 
+            type="text" 
+            id="username" 
+            [(ngModel)]="username" 
+            name="username" 
+            required placeholder="Entrez votre nom d'utilisateur"
+            #usernameInput="ngModel">
         </div>
         
         <div class="input-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" [(ngModel)]="password" name="password" required placeholder="Enter your password">
+          <label for="password">Mot de passe</label>
+          <input 
+            type="password" 
+            id="password" 
+            [(ngModel)]="password" 
+            name="password" 
+            required placeholder="Entrez votre mot de passe"
+            #passwordInput="ngModel">
         </div>
         
-        <button type="submit" class="login-btn">Login</button>
-        <p class="forgot-password">Forgot password?</p>
+        <button type="submit" class="login-btn" [disabled]="!loginForm.valid">Connectez-vous</button>
+        <p class="forgot-password" routerLink="/register">S'inscrire</p>
+
       </form>
     </div>
   </div>
-</body>
-
-</html>
+</div>
