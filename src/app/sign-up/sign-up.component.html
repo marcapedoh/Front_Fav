@@ -1,1 +1,52 @@
-<p>sign-up works!</p>
+<div class="login-wrapper">
+    <div class="login-container">
+      <div class="welcome-section">
+        <h1>Bienvenue!</h1>
+        <p>Inscrivez-vous pour accéder à votre compte et poursuivre votre voyage avec nous.</p>
+      </div>
+      <div class="login-form-section">
+        <h2>Connectez-vous</h2>
+        <form (ngSubmit)="onSubmit($event)" #signUpForm="ngForm">
+          <div class="input-group">
+            <label for="username">Nom d'utilisateur</label>
+            <input 
+              type="text" 
+              id="username" 
+              [(ngModel)]="username" 
+              name="username" 
+              required 
+              placeholder="Entrez votre nom d'utilisateur"
+              #usernameInput="ngModel">
+          </div>
+  
+          <div class="input-group">
+            <label for="password">Mot de passe</label>
+            <input 
+              type="password" 
+              id="password" 
+              [(ngModel)]="password" 
+              name="password" 
+              required 
+              placeholder="Entrez votre mot de passe"
+              #passwordInput="ngModel">
+          </div>
+          
+          <div class="input-group">
+            <label for="confirmPassword">Confirmez le Mot de passe</label>
+            <input 
+              type="password" 
+              id="confirmPassword" 
+              [(ngModel)]="confirmPassword" 
+              name="confirmPassword" 
+              required 
+              placeholder="Confirmez votre mot de passe"
+              #confirmPasswordInput="ngModel">
+          </div>
+  
+          <button type="submit" class="login-btn" [disabled]="!signUpForm.valid">Inscrivez-vous</button>
+          <p class="forgot-password" routerLink="/login">Se connecter</p>
+        </form>
+      </div>
+    </div>
+  </div>
+  
