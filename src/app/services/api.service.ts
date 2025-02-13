@@ -6,11 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:3000/api';
 
-  constructor(private http: HttpClient) {}
+  private apiUrl = 'http://localhost:8080/api';  // L'URL de ton backend Spring Boot
 
-  getMessage(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/message`);
+  constructor(private http: HttpClient) { }
+
+  // Exemple de méthode GET pour récupérer des utilisateurs
+  getUsers(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/users`);
   }
 }

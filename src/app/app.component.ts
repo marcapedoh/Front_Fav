@@ -7,13 +7,14 @@ import { ApiService } from './services/api.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  message: string = '';
+  users!: string[];
 
   constructor(private apiService: ApiService) {}
 
-  ngOnInit() {
-    this.apiService.getMessage().subscribe((data) => {
-      this.message = data.message;
+  ngOnInit(): void {
+    // Appel GET pour récupérer les utilisateurs
+    this.apiService.getUsers().subscribe((data) => {
+      this.users = data;
     });
   }
 }
