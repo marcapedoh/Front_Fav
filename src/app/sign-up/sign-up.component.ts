@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth-service/auth.service';
+import { AuthService, UserType } from '../auth-service/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +10,8 @@ export class SignUpComponent {
   username: string = '';
   password: string = '';
   confirmPassword: string = '';
-  passwordMismatch: boolean = false;
+  userType: UserType = UserType.USER;
+  passwordMismatch: boolean = false; // Define the property here
 
   constructor(private authService: AuthService) {}
 
@@ -19,10 +20,9 @@ export class SignUpComponent {
       this.passwordMismatch = true;
       return;
     }
+    this.passwordMismatch = false; // Reset mismatch error if passwords match
 
-    this.passwordMismatch = false;
-
-    this.authService.signUp(this.username, this.password, this.confirmPassword).subscribe({
+    this.authService.signUp(this.username, this.password, this.confirmPassword, this.userType).subscribe({
       next: (response) => console.log("Inscription réussie", response),
       error: (error) => console.error("Erreur d'inscription", error)
     });
