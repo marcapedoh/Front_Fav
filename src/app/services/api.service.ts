@@ -16,3 +16,12 @@ export class ApiService {
     return this.http.get<string[]>(`${this.apiUrl}/users`);
   }
 }
+
+export class UserService {
+  constructor(private http: HttpClient) { }
+
+  getUsers() {
+    return this.http.get('http://localhost:8080/api/users');
+  }
+}
+
