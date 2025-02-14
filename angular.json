@@ -87,9 +87,30 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/css/bootstrap/css/bootstrap.min.css",
+              "src/assets/pages/waves/css/waves.min.css",
+              "src/assets/icon/themify-icons/themify-icons.css",
+              "src/assets/icon/font-awesome/css/font-awesome.min.css",
+              "src/assets/css/jquery.mCustomScrollbar.css",
+              "src/assets/css/style.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery/jquery.min.js",
+              "src/assets/js/jquery-ui/jquery-ui.min.js",
+              "src/assets/js/popper.js/popper.min.js",
+              "src/assets/js/bootstrap/js/bootstrap.min.js",
+              "src/assets/pages/waves/js/waves.min.js",
+              "src/assets/js/jquery-slimscroll/jquery.slimscroll.js",
+              "src/assets/js/modernizr/modernizr.js",
+              "src/assets/js/SmoothScroll.js",
+              "src/assets/js/jquery.mCustomScrollbar.concat.min.js",
+              "src/assets/js/chart.js/Chart.js",
+              "src/assets/js/pcoded.min.js",
+              "src/assets/js/vertical-layout.min.js",
+              "src/assets/pages/dashboard/custom-dashboard.js",
+              "src/assets/js/script.js"
+            ]
           }
         }
       }
