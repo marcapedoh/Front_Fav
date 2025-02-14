@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth-service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,27 +10,35 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username: string = '';
   password: string = '';
-  usernameError: boolean = false;
-  passwordError: boolean = false;
+  errorMessage: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  goToLogin() {
-    this.router.navigate(['/login']);
-  }
+  onSubmit() {
+    this.errorMessage = ''; // Réinitialiser le message d'erreur
 
-  onSubmit(event: Event) {
-    event.preventDefault();
-    
-    // Validation logic for required fields
-    this.usernameError = !this.username;
-    this.passwordError = !this.password;
+    this.authService.login(this.username, this.password).subscribe({
+      next: (response) => {
+        if (response && response.token) {
+          console.log("✅ Connexion réussie", response);
+          localStorage.setItem('token', response.token); // Stocker le token JWT
 
-    if (!this.usernameError && !this.passwordError) {
-      console.log("Form Submitted!");
-      console.log('Username:', this.username);
-      console.log('Password:', this.password);
-      // Add any further login logic or routing here
-    }
+          this.router.navigate(['/dashboard']); // Redirection vers le dashboard
+        } else {
+          this.errorMessage = "Réponse invalide du serveur.";
+        }
+      },
+      error: (error) => {
+        console.error("❌ Erreur de connexion", error);
+        
+        if (error.status === 401) {
+          this.errorMessage = "Nom d'utilisateur ou mot de passe incorrect.";
+        } else if (error.status === 0) {
+          this.errorMessage = "Impossible de contacter le serveur. Vérifiez votre connexion.";
+        } else {
+          this.errorMessage = error.error?.message || "Une erreur s'est produite.";
+        }
+      }
+    });
   }
 }

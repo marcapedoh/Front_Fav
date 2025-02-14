@@ -4,9 +4,11 @@
       <h1>Bienvenue!</h1>
       <p>Connectez-vous pour accéder à votre compte et poursuivre votre voyage avec nous.</p>
     </div>
+    
     <div class="login-form-section">
       <h2>Connectez-vous</h2>
-      <form form (ngSubmit)="onSubmit($event)" #loginForm="ngForm">
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        
         <div class="input-group">
           <label for="username">Nom d'utilisateur</label>
           <input 
@@ -14,8 +16,11 @@
             id="username" 
             [(ngModel)]="username" 
             name="username" 
-            required 
-            #usernameInput="ngModel"/>
+            #usernameInput="ngModel"
+            required />
+          <p *ngIf="usernameInput.invalid && usernameInput.touched" style="color: red;">
+            Le nom d'utilisateur est requis.
+          </p>
         </div>
         
         <div class="input-group">
@@ -25,12 +30,17 @@
             id="password" 
             [(ngModel)]="password" 
             name="password" 
-            required 
-            #passwordInput="ngModel"/>
+            #passwordInput="ngModel"
+            required />
+          <p *ngIf="passwordInput.invalid && passwordInput.touched" style="color: red;">
+            Le mot de passe est requis.
+          </p>
         </div>
         
         <button type="submit" class="login-btn" [disabled]="!loginForm.valid">Connectez-vous</button>
-        <p class="forgot-password" routerLink="/register">S'inscrire</p>
+        <p class="forgot-password">
+          <a routerLink="/register">S'inscrire</a>
+        </p>
 
       </form>
     </div>
